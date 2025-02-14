@@ -1,0 +1,246 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  - PatrolPoint
+  - Wall
+  - WeakSpot
+  - Enemy
+  - WorldSpawn
+  - Seed
+  - KillZone
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - PostProcessing
+  - Ground
+  - Player
+  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: TunnelWall
+    uniqueID: 328766919
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Cave 5
+    uniqueID: 3183369863
+    locked: 0
+  - name: Cave 4
+    uniqueID: 2803738427
+    locked: 0
+  - name: Cave 3
+    uniqueID: 648023617
+    locked: 0
+  - name: Cave 2
+    uniqueID: 2646937791
+    locked: 0
+  - name: Cave 1
+    uniqueID: 4231105859
+    locked: 0
+  - name: Background Rock -2
+    uniqueID: 607418883
+    locked: 0
+  - name: Background Rock -1
+    uniqueID: 1056261537
+    locked: 0
+  - name: Background
+    uniqueID: 1692524291
+    locked: 0
+  - name: Background Rock
+    uniqueID: 4187664819
+    locked: 0
+  - name: Background Rock 1
+    uniqueID: 2524111209
+    locked: 0
+  - name: CLAT
+    uniqueID: 2396418759
+    locked: 0
+  - name: CLAB
+    uniqueID: 545654225
+    locked: 0
+  - name: CLLT
+    uniqueID: 2119986931
+    locked: 0
+  - name: CLLB
+    uniqueID: 2991397055
+    locked: 0
+  - name: CBody
+    uniqueID: 3678113647
+    locked: 0
+  - name: CRLT
+    uniqueID: 2144064535
+    locked: 0
+  - name: CRLB
+    uniqueID: 2270307511
+    locked: 0
+  - name: CRAB
+    uniqueID: 1842008123
+    locked: 0
+  - name: CRAT
+    uniqueID: 1314004045
+    locked: 0
+  - name: CHead
+    uniqueID: 3613712505
+    locked: 0
+  - name: Leg1
+    uniqueID: 3096768061
+    locked: 0
+  - name: HuskHead
+    uniqueID: 1808488963
+    locked: 0
+  - name: Leg3
+    uniqueID: 2148646849
+    locked: 0
+  - name: Leg2
+    uniqueID: 912373103
+    locked: 0
+  - name: Mask
+    uniqueID: 2664780867
+    locked: 0
+  - name: Spikes
+    uniqueID: 3167082373
+    locked: 0
+  - name: Rocks
+    uniqueID: 4232648471
+    locked: 0
+  - name: Rocks 2
+    uniqueID: 3580109887
+    locked: 0
+  - name: Rocks 3
+    uniqueID: 1396705153
+    locked: 0
+  - name: Altar
+    uniqueID: 1509075153
+    locked: 0
+  - name: TRW
+    uniqueID: 1088229673
+    locked: 0
+  - name: TLW
+    uniqueID: 3365396527
+    locked: 0
+  - name: BLW
+    uniqueID: 3787354949
+    locked: 0
+  - name: BRW
+    uniqueID: 1399459575
+    locked: 0
+  - name: BBody
+    uniqueID: 55143679
+    locked: 0
+  - name: TBody
+    uniqueID: 132118237
+    locked: 0
+  - name: BLL
+    uniqueID: 3773285771
+    locked: 0
+  - name: TLL
+    uniqueID: 2788417853
+    locked: 0
+  - name: BRL
+    uniqueID: 30916111
+    locked: 0
+  - name: TRL
+    uniqueID: 1794181495
+    locked: 0
+  - name: BossHead
+    uniqueID: 3170546121
+    locked: 0
+  - name: LeftAntenna
+    uniqueID: 1817100597
+    locked: 0
+  - name: RightAntenna
+    uniqueID: 480353659
+    locked: 0
+  - name: BLA
+    uniqueID: 420134329
+    locked: 0
+  - name: TLA
+    uniqueID: 4289695603
+    locked: 0
+  - name: LeftScythe
+    uniqueID: 1114661535
+    locked: 0
+  - name: BRA
+    uniqueID: 2072965395
+    locked: 0
+  - name: TRA
+    uniqueID: 2848422137
+    locked: 0
+  - name: RightScythe
+    uniqueID: 28682537
+    locked: 0
+  - name: Seed
+    uniqueID: 4107121709
+    locked: 0
+  - name: Left Leg
+    uniqueID: 1836745371
+    locked: 0
+  - name: Left Arm
+    uniqueID: 2029560705
+    locked: 0
+  - name: Body
+    uniqueID: 2471819641
+    locked: 0
+  - name: Right Leg
+    uniqueID: 401895235
+    locked: 0
+  - name: Right Arm
+    uniqueID: 390369381
+    locked: 0
+  - name: Head
+    uniqueID: 359117197
+    locked: 0
+  - name: Chrysalid
+    uniqueID: 3545688557
+    locked: 0
+  - name: RightPetal
+    uniqueID: 2660225801
+    locked: 0
+  - name: LeftPetal
+    uniqueID: 1763180535
+    locked: 0
+  - name: TopPetal
+    uniqueID: 970810923
+    locked: 0
+  - name: Light
+    uniqueID: 4164821531
+    locked: 0
+  - name: Foreground 1
+    uniqueID: 1338228061
+    locked: 0
+  - name: Foreground 2
+    uniqueID: 3573667535
+    locked: 0
+  - name: Foreground 3
+    uniqueID: 1222786275
+    locked: 0
