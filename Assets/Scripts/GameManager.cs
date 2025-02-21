@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
+            player.transform.position = GetRespawnPosition();
             UpdatePlayerReferences(player);
         }
         else
@@ -182,6 +183,19 @@ public class GameManager : MonoBehaviour
         Debug.Log("?? Respawn Point Set: " + lastRespawnPosition + " in Level: " + lastLevel);
     }
 
+    public void SetRespawnPointToWorldSpawn()
+    {
+        if (worldSpawn != null)
+        {
+            lastRespawnPosition = worldSpawn.position;
+            Debug.Log("?? Respawn point set to WorldSpawn: " + lastRespawnPosition);
+        }
+        else
+        {
+            Debug.LogError("? WorldSpawn is missing! Defaulting respawn to (0,0,0)");
+            lastRespawnPosition = Vector3.zero;
+        }
+    }
 
 
 

@@ -18,11 +18,16 @@ public class LevelTransitionTrigger : MonoBehaviour
             hasTriggered = true;
 
             // Disable Player Movement
-            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+            /*PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
                 playerMovement.DisableMovement(float.MaxValue); // Disable movement indefinitely
                 Debug.Log("?? Player movement disabled during transition.");
+            }*/
+
+            if (GameManager.instance != null)
+            {
+                GameManager.instance.SetRespawnPointToWorldSpawn();
             }
 
             StartCoroutine(TransitionToNextLevel());
@@ -47,6 +52,7 @@ public class LevelTransitionTrigger : MonoBehaviour
 
         Debug.Log("?? Loading Next Level: " + nextLevel);
         SceneManager.LoadScene(nextLevel);
+
     }
 }
 
