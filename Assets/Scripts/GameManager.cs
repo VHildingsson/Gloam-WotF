@@ -297,6 +297,7 @@ public class GameManager : MonoBehaviour
         if (worldSpawn != null)
         {
             lastRespawnPosition = worldSpawn.position;
+            lastRespawnPosition.z = 0;
             Debug.Log("?? Respawn Reset to WorldSpawn: " + lastRespawnPosition);
         }
         else

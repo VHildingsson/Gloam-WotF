@@ -16,6 +16,12 @@ public class LoseLifeCutscene : MonoBehaviour
             Debug.Log("?? Player Disabled for Cutscene");
         }
 
+        EmberManager emberManager = FindObjectOfType<EmberManager>();
+        if (emberManager != null)
+        {
+            emberManager.UpdateEmbers(GameManager.instance.GetCurrentLives());
+        }
+
         StartCoroutine(PlayCutscene());
     }
 
