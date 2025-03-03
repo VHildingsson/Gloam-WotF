@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     private bool isGrounded;
 
+    [Header("Wall Detection")]
+    public float wallCheckDistance = 0.5f; // Distance to check for walls
+    public LayerMask wallLayer; // Set this to the layer that contains your walls
+
+
     void Start()
     {
         canMove = true;
@@ -45,7 +50,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
         float move = Input.GetAxis("Horizontal");
+
+        // Wall slide detection
+        bool isTouchingWall = IsTouchingWall();
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && move != 0)
         {
@@ -60,7 +69,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float currentSpeed = isSprinting ? speed * sprintMultiplier : speed;
-        rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
+        if (isTouchingWall && move != 0)
+        {
+            // Slide off the wall (apply a small force away from the wall)
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y); // Retain vertical speed
+            if (move > 0)
+            {
+                rb.AddForce(Vector2.left * 2f); // Apply force to the left to slide off the wall
+            }
+            else if (move < 0)
+            {
+                rb.AddForce(Vector2.right * 2f); // Apply force to the right to slide off the wall
+            }
+        }
+        else
+        {
+            rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
+        }
 
         if (move > 0 && !facingRight)
             Flip();
@@ -75,6 +100,12 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool("isRunning", move != 0 && !isSprinting);
         anim.SetBool("isJumping", !isGrounded);
+    }
+
+    bool IsTouchingWall()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, wallCheckDistance, wallLayer);
+        return hit.collider != null;
     }
 
     private void Flip()

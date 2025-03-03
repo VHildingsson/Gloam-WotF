@@ -433,6 +433,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  wallCheckDistance: 1.5
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &3459814355615753991
 MonoBehaviour:
   m_ObjectHideFlags: 0
