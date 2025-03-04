@@ -153,11 +153,11 @@ public class HusklingAI : MonoBehaviour
 
 
 
-    private IEnumerator DisableEnemyMovement(float duration)
+    /*private IEnumerator DisableEnemyMovement(float duration)
     {
         yield return new WaitForSeconds(duration);
         canMove = true;
-    }
+    }*/
 
     public void SetDazed(bool state)
     {

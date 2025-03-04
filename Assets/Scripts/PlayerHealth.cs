@@ -26,6 +26,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private FadeScreen fadeScreen;
     public float fadeOutDuration = 1f;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip hurtSound;
+
 
 
     void Start()
@@ -34,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+        audioSource = GetComponent<AudioSource>();
         isDead = false;
     }
 
@@ -47,10 +51,12 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            audioSource.PlayOneShot(hurtSound, 0.2f);
         }
         else
         {
             StartCoroutine(ApplyKnockback(knockbackDirection));
+            audioSource.PlayOneShot(hurtSound, 0.2f);
         }
     }
 

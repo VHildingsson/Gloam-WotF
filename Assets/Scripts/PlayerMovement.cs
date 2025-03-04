@@ -31,12 +31,17 @@ public class PlayerMovement : MonoBehaviour
     public float wallCheckDistance = 0.5f; // Distance to check for walls
     public LayerMask wallLayer; // Set this to the layer that contains your walls
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSound;
+
 
     void Start()
     {
         canMove = true;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+
         rb.gravityScale = normalGravityScale;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
@@ -96,6 +101,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             anim.SetTrigger("takeOff");
+            audioSource.PlayOneShot(jumpSound, 0.1f);
+
         }
 
         anim.SetBool("isRunning", move != 0 && !isSprinting);
