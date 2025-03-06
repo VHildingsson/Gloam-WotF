@@ -12022,7 +12022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2bdb4b9459e864a9345611d262231c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowGravityScale: 1
+  lowGravityScale: 0.5
   exitGravityScale: 5
   floatyDrag: -1
   fadeDuration: 1

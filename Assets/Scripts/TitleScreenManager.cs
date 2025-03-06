@@ -9,8 +9,9 @@ public class TitleScreenManager : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SceneManager.LoadScene("Level1"); // Replace with your first level scene name
+            SceneManager.LoadScene("IntroCutscene"); // Load the cutscene scene first
         }
     }
 }
+
 
