@@ -439,6 +439,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   jumpSound: {fileID: 8300000, guid: b6aec9b73d4f17947a3f77a2f4cdace7, type: 3}
+  gravitySound: {fileID: 8300000, guid: ae4fd4c3e65d3f54e805a972f8360f14, type: 3}
+  fadeDuration: 1
 --- !u!114 &3459814355615753991
 MonoBehaviour:
   m_ObjectHideFlags: 0

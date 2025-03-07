@@ -31,8 +31,13 @@ public class PlayerMovement : MonoBehaviour
     public float wallCheckDistance = 0.5f; // Distance to check for walls
     public LayerMask wallLayer; // Set this to the layer that contains your walls
 
+    [Header("Audio Settings")]
     private AudioSource audioSource;
+    private AudioSource gravityAudioSource;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip gravitySound;
+    public float fadeDuration = 1.0f;
+    private Coroutine fadeCoroutine;
 
 
     void Start()
@@ -41,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
+        gravityAudioSource = gameObject.AddComponent<AudioSource>();
+        gravityAudioSource.loop = true;
+        gravityAudioSource.playOnAwake = false;
+        gravityAudioSource.clip = gravitySound;
 
         rb.gravityScale = normalGravityScale;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -155,6 +164,46 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }
+
+    public void HandleGravityAudio(bool enteringGravityZone)
+    {
+        if (enteringGravityZone)
+        {
+            if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+            fadeCoroutine = StartCoroutine(FadeGravityAudio(0.5f, true)); // Fade in
+        }
+        else
+        {
+            if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+            fadeCoroutine = StartCoroutine(FadeGravityAudio(0.0f, false)); // Fade out
+        }
+    }
+
+    private IEnumerator FadeGravityAudio(float targetVolume, bool playIfStarting)
+    {
+        float startVolume = gravityAudioSource.volume;
+        float elapsedTime = 0f;
+
+        if (playIfStarting && !gravityAudioSource.isPlaying)
+        {
+            gravityAudioSource.Play();
+        }
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            gravityAudioSource.volume = Mathf.Lerp(startVolume, targetVolume, elapsedTime / fadeDuration);
+            yield return null;
+        }
+
+        gravityAudioSource.volume = targetVolume;
+
+        if (targetVolume == 0)
+        {
+            gravityAudioSource.Stop(); // Ensure it fully stops when faded out
+        }
+    }
+
 }
 
 

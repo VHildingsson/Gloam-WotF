@@ -12,6 +12,8 @@ TagManager:
   - WorldSpawn
   - Seed
   - KillZone
+  - LockedDoor
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - Ground
   - Player
   - Enemy
-  - 
+  - Spikes
   - 
   - 
   - 
@@ -112,20 +114,11 @@ TagManager:
   - name: CHead
     uniqueID: 3613712505
     locked: 0
-  - name: Leg1
-    uniqueID: 3096768061
+  - name: Key
+    uniqueID: 1884342215
     locked: 0
-  - name: HuskHead
-    uniqueID: 1808488963
-    locked: 0
-  - name: Leg3
-    uniqueID: 2148646849
-    locked: 0
-  - name: Leg2
-    uniqueID: 912373103
-    locked: 0
-  - name: Mask
-    uniqueID: 2664780867
+  - name: Door
+    uniqueID: 3008574835
     locked: 0
   - name: Spikes
     uniqueID: 3167082373
@@ -141,6 +134,21 @@ TagManager:
     locked: 0
   - name: Altar
     uniqueID: 1509075153
+    locked: 0
+  - name: Leg1
+    uniqueID: 3096768061
+    locked: 0
+  - name: HuskHead
+    uniqueID: 1808488963
+    locked: 0
+  - name: Leg3
+    uniqueID: 2148646849
+    locked: 0
+  - name: Leg2
+    uniqueID: 912373103
+    locked: 0
+  - name: Mask
+    uniqueID: 2664780867
     locked: 0
   - name: TRW
     uniqueID: 1088229673
