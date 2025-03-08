@@ -6,6 +6,7 @@ public class IntroCutsceneManager : MonoBehaviour
 {
     private Animator animator;
     private float cutsceneLength; // Store animation length
+    private bool cutsceneSkipped = false; // Track if cutscene was skipped
 
     void Start()
     {
@@ -36,12 +37,29 @@ public class IntroCutsceneManager : MonoBehaviour
         StartCoroutine(WaitForCutsceneToEnd());
     }
 
+    void Update()
+    {
+        // Check if 'E' key is pressed
+        if (Input.GetKeyDown(KeyCode.E) && !cutsceneSkipped)
+        {
+            SkipCutscene();
+        }
+    }
+
     private IEnumerator WaitForCutsceneToEnd()
     {
         yield return new WaitForSeconds(cutsceneLength);
+        if (!cutsceneSkipped) // Prevent double scene loading
+        {
+            SceneManager.LoadScene("Level1");
+        }
+    }
 
-        // Load Level1 when the animation ends
+    private void SkipCutscene()
+    {
+        cutsceneSkipped = true;
         SceneManager.LoadScene("Level1");
     }
 }
+
 

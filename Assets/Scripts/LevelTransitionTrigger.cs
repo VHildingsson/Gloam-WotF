@@ -25,12 +25,12 @@ public class LevelTransitionTrigger : MonoBehaviour
                 Debug.Log("?? Player movement disabled during transition.");
             }*/
 
+            StartCoroutine(TransitionToNextLevel());
+
             if (GameManager.instance != null)
             {
                 GameManager.instance.SetRespawnPointToWorldSpawn();
             }
-
-            StartCoroutine(TransitionToNextLevel());
         }
     }
 
