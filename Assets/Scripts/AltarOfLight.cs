@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement; // Needed to check level name
 
 public class AltarOfLight : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class AltarOfLight : MonoBehaviour
     [Header("Linked Rock Collapse")]
     public float delayBeforeCollapse = 1.5f; // Time before the rock falls
 
+    [Header("Special Key Activation for Level 2")]
+    public GameObject keyToEnable; // Assign the key object in the inspector
+
     void Start()
     {
         if (player == null)
@@ -28,8 +32,14 @@ public class AltarOfLight : MonoBehaviour
             }
             else
             {
-                Debug.LogError("? AltarOfLight - No Player Found!");
+                Debug.LogError("?? AltarOfLight - No Player Found!");
             }
+        }
+
+        // Ensure key is disabled at start (only if we're in Level 2)
+        if (SceneManager.GetActiveScene().name == "Level2" && keyToEnable != null)
+        {
+            keyToEnable.SetActive(false);
         }
     }
 
@@ -52,7 +62,7 @@ public class AltarOfLight : MonoBehaviour
             }
             else
             {
-                Debug.Log("?? The altar is inactive. You need the Seed of Sight to activate it.");
+                Debug.Log("?? The altar is inactive. You need the Seed of Sight.");
             }
         }
         else
@@ -65,7 +75,6 @@ public class AltarOfLight : MonoBehaviour
     {
         placedSeed = seed;
 
-        // Ensure the seed is fully centered on the altar
         seed.transform.SetParent(null);
         seed.transform.position = seedPlacementPoint.position;
         seed.transform.rotation = Quaternion.identity;
@@ -76,10 +85,9 @@ public class AltarOfLight : MonoBehaviour
         {
             rb.isKinematic = true;
             rb.velocity = Vector2.zero;
-            rb.constraints = RigidbodyConstraints2D.FreezeAll; // Lock the seed in place
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
-        // Disable seed interactions
         seed.GetComponent<Collider2D>().enabled = false;
         seed.enabled = false;
 
@@ -88,13 +96,12 @@ public class AltarOfLight : MonoBehaviour
 
     public void StartAltarActivation()
     {
-        canInteract = false; // Disable altar interaction immediately
-
-        animator.SetTrigger("AltarMidActive"); // Play altar animation
+        canInteract = false;
+        animator.SetTrigger("AltarMidActive");
 
         if (fallingRock != null)
         {
-            StartCoroutine(TriggerRockFallDelayed()); // Delay rock fall for timing
+            StartCoroutine(TriggerRockFallDelayed());
         }
 
         StartCoroutine(CompleteAltarActivation());
@@ -110,10 +117,9 @@ public class AltarOfLight : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("?? FallingRock is not assigned!");
+            Debug.LogWarning("? FallingRock is not assigned!");
         }
     }
-
 
     private IEnumerator CompleteAltarActivation()
     {
@@ -121,8 +127,16 @@ public class AltarOfLight : MonoBehaviour
         animator.SetTrigger("AltarActive");
         isActivated = true;
         Debug.Log("? The Altar of Light has been fully activated!");
+
+        // **Enable Key Only in Level 2**
+        if (SceneManager.GetActiveScene().name == "Level2" && keyToEnable != null)
+        {
+            keyToEnable.SetActive(true);
+            Debug.Log("?? Key has been enabled in Level 2!");
+        }
     }
 }
+
 
 
 

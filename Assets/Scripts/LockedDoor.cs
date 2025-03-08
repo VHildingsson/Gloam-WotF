@@ -6,7 +6,7 @@ public class LockedDoor : MonoBehaviour
     public bool isUnlocked = false;
     public float interactionRange = 2f;
     public KeyCode interactKey = KeyCode.F;
-    public Transform player;
+    private Transform player;
     public Animator animator;
     public Transform keyPlacementPoint;
     private KeyItem placedKey;
@@ -14,28 +14,32 @@ public class LockedDoor : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(FindPlayer());
+        StartCoroutine(AssignPlayer());
     }
 
-    private IEnumerator FindPlayer()
+    private IEnumerator AssignPlayer()
     {
         while (player == null)
         {
             GameObject foundPlayer = GameObject.FindWithTag("Player");
-            if (foundPlayer != null) player = foundPlayer.transform;
+            if (foundPlayer != null)
+                player = foundPlayer.transform;
+
             yield return null;
         }
     }
 
     void Update()
     {
-        if (canInteract && Vector2.Distance(transform.position, player.position) <= interactionRange && Input.GetKeyDown(interactKey))
+        if (player == null || !canInteract) return;
+
+        if (Vector2.Distance(transform.position, player.position) <= interactionRange && Input.GetKeyDown(interactKey))
         {
-            Interact();
+            TryUnlockDoor();
         }
     }
 
-    void Interact()
+    void TryUnlockDoor()
     {
         if (placedKey == null)
         {
@@ -45,6 +49,14 @@ public class LockedDoor : MonoBehaviour
             {
                 PlaceKey(key);
             }
+            else
+            {
+                Debug.Log("?? The door is locked. You need a key.");
+            }
+        }
+        else
+        {
+            Debug.Log("? The door is already unlocked.");
         }
     }
 
@@ -52,10 +64,12 @@ public class LockedDoor : MonoBehaviour
     {
         placedKey = key;
 
-        key.transform.SetParent(null);
+        key.transform.SetParent(transform, true); // ?? Keep world position/scale
         key.transform.position = keyPlacementPoint.position;
         key.transform.rotation = Quaternion.identity;
-        key.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+
+        // ? Store the key's original scale and reapply it
+        Vector3 originalScale = key.transform.localScale;
 
         Rigidbody2D rb = key.GetComponent<Rigidbody2D>();
         if (rb != null)
@@ -67,6 +81,9 @@ public class LockedDoor : MonoBehaviour
 
         key.GetComponent<Collider2D>().enabled = false;
         key.enabled = false;
+
+        // ?? Reapply original scale to prevent unwanted resizing
+        key.transform.localScale = originalScale;
 
         StartDoorUnlock();
     }
@@ -82,7 +99,7 @@ public class LockedDoor : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         isUnlocked = true;
-        gameObject.SetActive(false);
+        Debug.Log("?? The door is now open, and the key moves with it!");
     }
 }
 
